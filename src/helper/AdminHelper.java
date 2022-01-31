@@ -1,6 +1,7 @@
 package helper;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import dao.AdminDao;
@@ -45,8 +46,8 @@ public class AdminHelper {
 
 		while (optionStatus) {
 			System.out.println(
-					"\nSelect operation to perform: \n1) Add Customer \n2) Update Customer \n3) Delete Customer"
-							+ "\n4) Add Restaurant \n5) Update Restaurant \n6) Delete Restaurant \n\n7) Logout");
+					"\nSelect operation to perform: \n1) Add Customer \n2) Update Customer \n3) View Customers \n4) Delete Customer"
+							+ "\n5) Add Restaurant \n6) Update Restaurant \n7) View Restaurants \n8) Delete Restaurant \n\n9) Logout");
 			System.out.print("\nEnter your choice: ");
 
 			int option = sc.nextInt();
@@ -61,22 +62,30 @@ public class AdminHelper {
 				break;
 
 			case 3:
-				deleteCustomer();
+				viewCustomers();
 				break;
 
 			case 4:
-				addRestaurant();
+				deleteCustomer();
 				break;
 
 			case 5:
-				updateRestaurant();
+				addRestaurant();
 				break;
 
 			case 6:
-				deleteRestaurant();
+				updateRestaurant();
 				break;
 
 			case 7:
+				viewRestaurants();
+				break;
+
+			case 8:
+				deleteRestaurant();
+				break;
+
+			case 9:
 				optionStatus = false;
 				break;
 
@@ -130,6 +139,18 @@ public class AdminHelper {
 		boolean updateCustomerStatus = customerDao.updateCustomerAddress(username, address);
 
 		System.out.println(updateCustomerStatus ? "\nUpdate customer successful!" : "\nUpdate customer failed!");
+	}
+
+	private static void viewCustomers() {
+		System.out.println("\n--- View Customers---");
+
+		List<Customer> customerList = customerDao.viewCustomers();
+
+		System.out.println("\nUsername \tName \tEmail \tPhone no \tAddress");
+
+		for (Customer customer : customerList) {
+			System.out.println(customer.getUsername() + "\t" + customer.getName() + "\t" + customer.getEmail() + "\t" + customer.getPhoneNo() + "\t" + customer.getAddress());
+		}
 	}
 
 	private static void deleteCustomer() {
@@ -188,6 +209,18 @@ public class AdminHelper {
 		boolean updateRestaurantStatus = restaurantDao.updateRestaurantAddress(restaurantId, address);
 
 		System.out.println(updateRestaurantStatus ? "\nUpdate restaurant successful!" : "\nUpdate restaurant failed!");
+	}
+
+	private static void viewRestaurants() {
+		System.out.println("\n--- View Restaurants---");
+
+		List<Restaurant> restaurantList = restaurantDao.viewRestaurants();
+
+		System.out.println("\nRestaurant ID \tName \tEmail \tPhone no \tAddress");
+
+		for (Restaurant restaurant : restaurantList) {
+			System.out.println(restaurant.getRestaurantId() + "\t" + restaurant.getName() + "\t" + restaurant.getEmail() + "\t" + restaurant.getPhoneNo() + "\t" + restaurant.getAddress());
+		}
 	}
 
 	private static void deleteRestaurant() {

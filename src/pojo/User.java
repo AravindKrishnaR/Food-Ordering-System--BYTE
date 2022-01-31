@@ -7,6 +7,19 @@ public class User {
 	private String email;
 	private String phoneNo;
 
+	public User() {
+		super();
+	}
+
+	public User(String username, String password, String name, String email, String phoneNo) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.phoneNo = phoneNo;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -30,7 +43,7 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
