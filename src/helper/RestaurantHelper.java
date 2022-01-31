@@ -51,64 +51,74 @@ public class RestaurantHelper {
 			int option = sc.nextInt();
 
 			switch (option) {
-			case 1: {
-				// Get food details from the admin
-				System.out.println("\n--- Add Food ---");
-				Food food = new Food();
-
-				System.out.print("\nEnter food name: ");
-				sc.nextLine();
-				food.setName(sc.nextLine());
-
-				System.out.print("Enter food description: ");
-				food.setDescription(sc.nextLine());
-
-				System.out.print("Enter price: ");
-				food.setPrice(sc.nextDouble());
-				sc.nextLine();
-
-				System.out.print("Enter food category: ");
-				food.setCategory(sc.nextLine());
-
-				boolean addFoodStatus = FoodDao.addFood(restaurant, food);
-
-				System.out.println(addFoodStatus ? "\nAdd food successful!" : "\nAdd food failed!");
+			case 1:
+				addFood(restaurant);
 				break;
-			}
-			case 2: {
-				System.out.println("\n--- View Food Menu ---");
 
-				List<Food> foodMenu = foodDao.viewFoodMenuByRestaurant(restaurant.getRestaurantId());
-
-				System.out.println("\nFood ID \tName \tDescription \tPrice \tCategory");
-
-				for (Food food : foodMenu) {
-					System.out.println(food.getFoodId() + "\t\t" + food.getName() + "\t" + food.getDescription() + "\t"
-							+ food.getPrice() + "\t" + food.getCategory());
-				}
+			case 2:
+				viewFoodMenu(restaurant);
 				break;
-			}
 
-			case 3: {
-				System.out.println("\n--- View Orders---");
-
-				List<Orders> orderList = ordersDao.viewRestaurantOrders(restaurant.getRestaurantId());
-
-				System.out.println("\nFood \tCustomer \tPrice");
-
-				for (Orders order : orderList) {
-					System.out
-							.println(order.getFoodName() + "\t" + order.getRestaurantName() + "\t" + order.getPrice());
-				}
+			case 3:
+				viewOrders(restaurant);
 				break;
-			}
 
 			case 4:
 				optionStatus = false;
 				break;
+
 			default:
 				System.out.println("\nEnter a valid choice!");
 			}
+		}
+	}
+
+	private static void addFood(Restaurant restaurant) {
+		// Get food details from the restaurant
+		System.out.println("\n--- Add Food ---");
+		Food food = new Food();
+
+		System.out.print("\nEnter food name: ");
+		sc.nextLine();
+		food.setName(sc.nextLine());
+
+		System.out.print("Enter food description: ");
+		food.setDescription(sc.nextLine());
+
+		System.out.print("Enter price: ");
+		food.setPrice(sc.nextDouble());
+		sc.nextLine();
+
+		System.out.print("Enter food category: ");
+		food.setCategory(sc.nextLine());
+
+		boolean addFoodStatus = FoodDao.addFood(restaurant, food);
+
+		System.out.println(addFoodStatus ? "\nAdd food successful!" : "\nAdd food failed!");
+	}
+
+	private static void viewFoodMenu(Restaurant restaurant) {
+		System.out.println("\n--- View Food Menu ---");
+
+		List<Food> foodMenu = foodDao.viewFoodMenuByRestaurant(restaurant.getRestaurantId());
+
+		System.out.println("\nFood ID \tName \tDescription \tPrice \tCategory");
+
+		for (Food food : foodMenu) {
+			System.out.println(food.getFoodId() + "\t\t" + food.getName() + "\t" + food.getDescription() + "\t"
+					+ food.getPrice() + "\t" + food.getCategory());
+		}
+	}
+
+	private static void viewOrders(Restaurant restaurant) {
+		System.out.println("\n--- View Orders---");
+
+		List<Orders> orderList = ordersDao.viewRestaurantOrders(restaurant.getRestaurantId());
+
+		System.out.println("\nFood \tCustomer \tPrice");
+
+		for (Orders order : orderList) {
+			System.out.println(order.getFoodName() + "\t" + order.getRestaurantName() + "\t" + order.getPrice());
 		}
 	}
 
