@@ -28,7 +28,6 @@ public class FoodDao {
 			pst.setDouble(4, food.getPrice());
 			pst.setString(5, food.getCategory());
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -38,26 +37,26 @@ public class FoodDao {
 
 		return status > 0 ? true : false;
 	}
-	
+
 	public List<String> viewCategory() {
-		
+
 		Connection conn = DButil.getConnection();
 		List<String> categoryList = new ArrayList<>();
-		
+
 		try {
 			PreparedStatement pst = conn.prepareStatement("SELECT distinct category from Food");
 			ResultSet rs = pst.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				categoryList.add(rs.getString(1));
 			}
-			
+
 		} catch (SQLException e) {
 //			e.printStackTrace();
 		}
 
 		DButil.closeConnection(conn);
-		
+
 		return categoryList;
 	}
 

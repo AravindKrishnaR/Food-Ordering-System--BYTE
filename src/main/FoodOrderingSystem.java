@@ -16,8 +16,11 @@ public class FoodOrderingSystem {
 		int user;
 
 		do {
-
-			System.out.println("\n\n---------- Welcome to Food Ordering System by Aravind! ----------");
+			System.out.println("\n\n*****************************************************************");
+			System.out.println("**********                                             **********");
+			System.out.println("********** Welcome to Food Ordering System by Aravind! **********");
+			System.out.println("**********                                             **********");
+			System.out.println("*****************************************************************");
 
 			System.out.println("\nPlease identify yourself \n1) Admin \n2) Customer \n3) Restaurant \n\n4) Exit");
 			System.out.print("\nEnter your choice: ");

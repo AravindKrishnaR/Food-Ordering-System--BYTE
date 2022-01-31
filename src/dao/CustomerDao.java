@@ -81,7 +81,6 @@ public class CustomerDao {
 			pst.setString(5, customer.getPhoneNo());
 			pst.setString(6, customer.getAddress());
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -103,7 +102,6 @@ public class CustomerDao {
 			pst.setString(1, address);
 			pst.setString(2, username);
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -124,7 +122,6 @@ public class CustomerDao {
 			PreparedStatement pst = conn.prepareStatement("DELETE from Customer WHERE username = ?");
 			pst.setString(1, username);
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();

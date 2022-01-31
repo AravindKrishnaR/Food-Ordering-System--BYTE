@@ -107,7 +107,6 @@ public class RestaurantDao {
 			pst.setString(5, restaurant.getPhoneNo());
 			pst.setString(6, restaurant.getAddress());
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -128,7 +127,6 @@ public class RestaurantDao {
 			pst.setString(1, address);
 			pst.setInt(2, restaurantId);
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -148,7 +146,6 @@ public class RestaurantDao {
 			PreparedStatement pst = conn.prepareStatement("DELETE from Restaurant WHERE restaurantId = ?");
 			pst.setInt(1, restaurantId);
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();

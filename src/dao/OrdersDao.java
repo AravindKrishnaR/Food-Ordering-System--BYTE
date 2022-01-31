@@ -24,7 +24,6 @@ public class OrdersDao {
 			pst.setInt(2, order.getRestaurantId());
 			pst.setInt(3, order.getFoodId());
 
-			System.out.println(pst);
 			status = pst.executeUpdate();
 		} catch (SQLException e) {
 //			e.printStackTrace();
