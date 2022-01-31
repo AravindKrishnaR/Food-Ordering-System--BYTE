@@ -102,12 +102,17 @@ public class RestaurantHelper {
 
 		List<Food> foodMenu = foodDao.viewFoodMenuByRestaurant(restaurant.getRestaurantId());
 
-		System.out.println("\nFood ID \tName \tDescription \tPrice \tCategory");
+		System.out.println("-----------------------------------------------------------------------------------");
+		System.out.printf("%8s %25s %15s %15s %15s", "FOOD", "NAME", "DESCRIPTION", "PRICE", "CATEGORY");
+		System.out.println();
+		System.out.println("-----------------------------------------------------------------------------------");
 
 		for (Food food : foodMenu) {
-			System.out.println(food.getFoodId() + "\t\t" + food.getName() + "\t" + food.getDescription() + "\t"
-					+ food.getPrice() + "\t" + food.getCategory());
+			System.out.format("%8s %25s %15s %15s %15s", food.getFoodId(), food.getName(), food.getDescription(),
+					food.getPrice(), food.getCategory());
+			System.out.println();
 		}
+		System.out.println("-----------------------------------------------------------------------------------");
 	}
 
 	private static void viewOrders(Restaurant restaurant) {
@@ -115,11 +120,17 @@ public class RestaurantHelper {
 
 		List<Orders> orderList = ordersDao.viewRestaurantOrders(restaurant.getRestaurantId());
 
-		System.out.println("\nFood \tCustomer \tPrice");
+		System.out.println("--------------------------------------------------------------------------");
+		System.out.printf("%25s %15s %15s %15s", "FOOD", "USERNAME", "CUSTOMER NAME", "PRICE");
+		System.out.println();
+		System.out.println("--------------------------------------------------------------------------");
 
 		for (Orders order : orderList) {
-			System.out.println(order.getFoodName() + "\t" + order.getRestaurantName() + "\t" + order.getPrice());
+			System.out.format("%25s %15s %15s %15s", order.getFoodName(), order.getCustomerUsername(),
+					order.getCustomerName(), order.getPrice());
+			System.out.println();
 		}
+		System.out.println("--------------------------------------------------------------------------");
 	}
 
 }

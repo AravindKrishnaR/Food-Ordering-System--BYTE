@@ -84,24 +84,34 @@ public class CustomerHelper {
 
 		List<Restaurant> restaurantList = restaurantDao.viewRestaurants();
 
-		System.out.println("\nRestaurant ID \tName \tEmail \tPhone no \tAddress");
+		System.out.println("-------------------------------------------------------------------------------------");
+		System.out.printf("%13s %15s %22s %15s %15s", "RESTAURANT ID", "NAME", "EMAIL", "PHONE NO", "ADDRESS");
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------------------");
 
 		for (Restaurant restaurant : restaurantList) {
-			System.out.println(restaurant.getRestaurantId() + "\t\t" + restaurant.getName() + "\t"
-					+ restaurant.getEmail() + "\t" + restaurant.getPhoneNo() + "\t" + restaurant.getAddress());
+			System.out.format("%13s %15s %22s %15s %15s", restaurant.getRestaurantId(), restaurant.getName(),
+					restaurant.getEmail(), restaurant.getPhoneNo(), restaurant.getAddress());
+			System.out.println();
 		}
+		System.out.println("-------------------------------------------------------------------------------------");
 
 		System.out.print("\nEnter your choice: ");
 		int restaurantChoice = sc.nextInt();
 
 		List<Food> foodMenu = foodDao.viewFoodMenuByRestaurant(restaurantChoice);
 
-		System.out.println("\nFood ID \tName \tDescription \tPrice \tCategory");
+		System.out.println("-------------------------------------------------------------------------------------");
+		System.out.printf("%8s %27s %15s %15s %15s", "FOOD ID", "NAME", "DESCRIPTION", "PRICE", "CATEGORY");
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------------------");
 
 		for (Food food : foodMenu) {
-			System.out.println(food.getFoodId() + "\t\t" + food.getName() + "\t" + food.getDescription() + "\t"
-					+ food.getPrice() + "\t" + food.getCategory());
+			System.out.format("%8s %27s %15s %15s %15s", food.getFoodId(), food.getName(), food.getDescription(),
+					food.getPrice(), food.getCategory());
+			System.out.println();
 		}
+		System.out.println("-------------------------------------------------------------------------------------");
 
 		System.out.print("\nEnter your food choice to order: ");
 		int foodChoice = sc.nextInt();
@@ -121,11 +131,16 @@ public class CustomerHelper {
 
 		List<String> categoryList = foodDao.viewCategory();
 
-		System.out.println("\nCategories");
+		System.out.println("------------");
+		System.out.printf("%11s", "CATEGORIES");
+		System.out.println();
+		System.out.println("------------");
 
 		for (String category : categoryList) {
-			System.out.println(category);
+			System.out.format("%11s", category);
+			System.out.println();
 		}
+		System.out.println("------------");
 
 		System.out.print("\nEnter your choice: ");
 		String categoryChoice = sc.next();
@@ -133,7 +148,10 @@ public class CustomerHelper {
 		List<Food> foodMenu = foodDao.viewFoodMenuByCategory(categoryChoice);
 		Map<Integer, Restaurant> map = new HashMap<>();
 
-		System.out.println("\nFood ID \tRestaurant \tName \tDescription \tPrice");
+		System.out.println("-------------------------------------------------------------------------------------");
+		System.out.printf("%8s %15s %27s %15s %15s", "FOOD ID", "RESTAURANT", "NAME", "DESCRIPTION", "PRICE");
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------------------");
 
 		for (Food food : foodMenu) {
 			Restaurant restaurant = new Restaurant();
@@ -142,9 +160,12 @@ public class CustomerHelper {
 			restaurantDao.getRestaurantName(restaurant);
 			map.put(food.getFoodId(), restaurant);
 
-			System.out.println(food.getFoodId() + "\t\t" + restaurant.getName() + "\t" + food.getName() + "\t"
-					+ food.getDescription() + "\t" + food.getPrice());
+			System.out.format("%8s %15s %27s %15s %15s", food.getFoodId(), restaurant.getName(), food.getName(),
+					food.getDescription(), food.getPrice());
+			System.out.println();
+
 		}
+		System.out.println("-------------------------------------------------------------------------------------");
 
 		System.out.print("\nEnter your food choice to order: ");
 		int foodChoice = sc.nextInt();
@@ -164,11 +185,16 @@ public class CustomerHelper {
 
 		List<Orders> orderList = ordersDao.viewCustomerOrders(customer.getUsername());
 
-		System.out.println("\nFood \tRestaurant \tPrice");
+		System.out.println("----------------------------------------------------------");
+		System.out.printf("%25s %15s %15s", "FOOD", "RESTAURANT", "PRICE");
+		System.out.println();
+		System.out.println("----------------------------------------------------------");
 
 		for (Orders order : orderList) {
-			System.out.println(order.getFoodName() + "\t" + order.getRestaurantName() + "\t" + order.getPrice());
+			System.out.format("%25s %15s %15s", order.getFoodName(), order.getRestaurantName(), order.getPrice());
+			System.out.println();
 		}
+		System.out.println("----------------------------------------------------------");
 	}
 
 }

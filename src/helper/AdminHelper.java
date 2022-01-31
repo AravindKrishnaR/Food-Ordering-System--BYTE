@@ -146,11 +146,17 @@ public class AdminHelper {
 
 		List<Customer> customerList = customerDao.viewCustomers();
 
-		System.out.println("\nUsername \tName \tEmail \tPhone no \tAddress");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.printf("%15s %15s %22s %15s %15s", "USERNAME", "NAME", "EMAIL", "PHONE NO", "ADDRESS");
+		System.out.println();
+		System.out.println("---------------------------------------------------------------------------------------");
 
 		for (Customer customer : customerList) {
-			System.out.println(customer.getUsername() + "\t" + customer.getName() + "\t" + customer.getEmail() + "\t" + customer.getPhoneNo() + "\t" + customer.getAddress());
+			System.out.format("%15s %15s %22s %15s %15s", customer.getUsername(), customer.getName(),
+					customer.getEmail(), customer.getPhoneNo(), customer.getAddress());
+			System.out.println();
 		}
+		System.out.println("---------------------------------------------------------------------------------------");
 	}
 
 	private static void deleteCustomer() {
@@ -216,11 +222,17 @@ public class AdminHelper {
 
 		List<Restaurant> restaurantList = restaurantDao.viewRestaurants();
 
-		System.out.println("\nRestaurant ID \tName \tEmail \tPhone no \tAddress");
+		System.out.println("-------------------------------------------------------------------------------------");
+		System.out.printf("%13s %15s %22s %15s %15s", "RESTAURANT ID", "NAME", "EMAIL", "PHONE NO", "ADDRESS");
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------------------");
 
 		for (Restaurant restaurant : restaurantList) {
-			System.out.println(restaurant.getRestaurantId() + "\t" + restaurant.getName() + "\t" + restaurant.getEmail() + "\t" + restaurant.getPhoneNo() + "\t" + restaurant.getAddress());
+			System.out.format("%13s %15s %22s %15s %15s", restaurant.getRestaurantId(), restaurant.getName(),
+					restaurant.getEmail(), restaurant.getPhoneNo(), restaurant.getAddress());
+			System.out.println();
 		}
+		System.out.println("-------------------------------------------------------------------------------------");
 	}
 
 	private static void deleteRestaurant() {
