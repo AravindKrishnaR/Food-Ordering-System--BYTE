@@ -67,6 +67,32 @@ public class RestaurantDao {
 
 	}
 
+	public List<Restaurant> viewRestaurants() {
+
+		Connection conn = DButil.getConnection();
+		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+
+		try {
+			PreparedStatement pst = conn.prepareStatement("SELECT * from Restaurant");
+
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+
+				Restaurant restaurant = new Restaurant(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6));
+				restaurantList.add(restaurant);
+			}
+
+		} catch (SQLException e) {
+//			e.printStackTrace();
+		}
+
+		DButil.closeConnection(conn);
+
+		return restaurantList;
+	}
+
 	public boolean addRestaurant(Restaurant restaurant) {
 		Connection conn = DButil.getConnection();
 
@@ -131,31 +157,5 @@ public class RestaurantDao {
 		DButil.closeConnection(conn);
 
 		return status > 0 ? true : false;
-	}
-
-	public List<Restaurant> viewRestaurants() {
-
-		Connection conn = DButil.getConnection();
-		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
-
-		try {
-			PreparedStatement pst = conn.prepareStatement("SELECT * from Restaurant");
-
-			ResultSet rs = pst.executeQuery();
-
-			while (rs.next()) {
-
-				Restaurant restaurant = new Restaurant(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6));
-				restaurantList.add(restaurant);
-			}
-
-		} catch (SQLException e) {
-//			e.printStackTrace();
-		}
-
-		DButil.closeConnection(conn);
-
-		return restaurantList;
 	}
 }
