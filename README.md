@@ -3,7 +3,7 @@
 
 -----
 
-**Overview:**
+## **Overview:**
 
 The project has 3 types of users:
 
@@ -29,7 +29,7 @@ The **Restaurant** has the following functionalities:
 - View Food Menu
 - View Orders
 
-**Output:**
+## **Output:**
 
 ```
 *****************************************************************
