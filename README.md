@@ -5,7 +5,7 @@
 
 ## **Overview:**
 
-The project has 3 types of users:
+This project has 3 types of users:
 
 - Admin
 - Customer
