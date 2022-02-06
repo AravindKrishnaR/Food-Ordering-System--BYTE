@@ -14,7 +14,7 @@ The project has 3 types of users:
 The **Admin** has the following functionalities:
 
 - Create/Update/Delete/View Customers
-- Create/Update/Delete/View Customers
+- Create/Update/Delete/View Restaurants
 
 The **Customer** has the following functionalities:
 
